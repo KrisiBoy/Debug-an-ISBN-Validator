@@ -15,13 +15,29 @@ This script validates an ISBN by calculating the expected check digit and compar
 
 ## Usage
 
-Run the script from the project folder:
+Run the script from the project folder.
+
+### Show help
+
+```bash
+python main.py -h
+```
+
+### Command-line mode
+
+```bash
+python main.py 0306406152 10
+```
+
+### Interactive mode
+
+If you run the script without arguments, it prompts for input:
 
 ```bash
 python main.py
 ```
 
-When prompted, enter the ISBN and length separated by a comma:
+Then enter the ISBN and length separated by a comma:
 
 ```text
 0306406152,10
@@ -29,7 +45,13 @@ When prompted, enter the ISBN and length separated by a comma:
 
 ## Examples
 
-Valid ISBN-10 example:
+Valid ISBN-10 example (command-line):
+
+```bash
+python main.py 0306406152 10
+```
+
+Valid ISBN-10 example (interactive):
 
 ```text
 Enter ISBN and length: 0306406152,10
@@ -50,8 +72,8 @@ Invalid ISBN Code.
 
 ## Input Rules
 
-- Enter values as `ISBN,length`
-- Do not include extra spaces before or after the ISBN value.
+- Use a comma-separated format: `ISBN,length`
+- Leading and trailing spaces are ignored for both values.
 - ISBN-10 check digits may be numeric or `X`.
 
 ## Notes

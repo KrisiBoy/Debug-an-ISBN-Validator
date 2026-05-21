@@ -1,5 +1,7 @@
+import argparse
+
 # Simple ISBN validator supporting ISBN-10 and ISBN-13.
-# Enter the ISBN code and expected length separated by a comma.
+# Supports command-line arguments and interactive prompt input.
 
 
 def validate_isbn(isbn, length):
@@ -97,3 +99,56 @@ def main():
         validate_isbn(isbn, length)
     else:
         print('Length should be 10 or 13.')
+
+
+def parse_args():
+    parser = argparse.ArgumentParser(
+        description='Validate ISBN-10 or ISBN-13 codes.'
+    )
+    parser.add_argument(
+        'isbn',
+        nargs='?',
+        help='The ISBN code to validate. For ISBN-10, the last digit may be X.'
+    )
+    parser.add_argument(
+        'length',
+        nargs='?',
+        type=int,
+        choices=[10, 13],
+        help='The ISBN length: 10 or 13.'
+    )
+    return parser.parse_args()
+
+
+def main():
+    args = parse_args()
+
+    if args.isbn and args.length:
+        validate_isbn(args.isbn.strip(), args.length)
+        return
+
+    # Prompt the user for input when command-line arguments are not provided.
+    user_input = input('Enter ISBN and length: ')
+    values = user_input.split(',')
+
+    try:
+        isbn = values[0].strip()
+        length_str = values[1].strip()
+    except IndexError:
+        print('Enter comma-separated values.')
+        return
+    
+    try:
+        length = int(length_str)
+    except ValueError:
+        print('Length must be a number.')
+        return
+
+    if length == 10 or length == 13:
+        validate_isbn(isbn, length)
+    else:
+        print('Length should be 10 or 13.')
+
+
+if __name__ == '__main__':
+    main()
