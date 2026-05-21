@@ -2,6 +2,8 @@
 
 A small Python script for validating ISBN-10 and ISBN-13 numbers.
 
+> Lab project from freeCodeCamp.org
+
 ## Description
 
 This script validates an ISBN by calculating the expected check digit and comparing it to the provided value.
